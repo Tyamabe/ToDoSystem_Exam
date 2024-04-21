@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CalendarController {
     @GetMapping("/main")
     public String showCalendar(Model model) {
-        System.out.println("###test###");
     	List<List<LocalDate>> monthList = new ArrayList<>();
         LocalDate today = LocalDate.now();
         LocalDate firstDayOfMonth = today.withDayOfMonth(1);

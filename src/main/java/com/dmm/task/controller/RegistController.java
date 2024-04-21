@@ -49,27 +49,27 @@ public class RegistController {
 	 * @param user     ユーザー情報
 	 * @return 遷移先
 	 */
-	@PostMapping("/create")
+	@PostMapping("/main/create")
 	public String create(@Validated RegistForm registForm, BindingResult bindingResult,
 			@AuthenticationPrincipal AccountUserDetails user, Model model) {
 		// バリデーションの結果、エラーがあるかどうかチェック
-		if (bindingResult.hasErrors()) {
+		//if (bindingResult.hasErrors()) {
 			// エラーがある場合は投稿登録画面を返す
-			List<Regist> list = repo.findAll(Sort.by(Sort.Direction.DESC, "id"));
-			model.addAttribute("regist", list);
-			model.addAttribute("registForm", registForm);
-			return "/main";
-		}
+		//	List<Regist> list = repo.findAll(Sort.by(Sort.Direction.DESC, "id"));
+		//	model.addAttribute("regist", list);
+		//	model.addAttribute("registForm", registForm);
+		//	return "redirect:/main";
+		//}
 
 		Regist regist = new Regist();
 		regist.setName(user.getName());
 		regist.setTitle(registForm.getTitle());
-		regist.setText(regist.getText());
+		regist.setText(registForm.getText());
 		regist.setDate(LocalDateTime.now());
 
 		repo.save(regist);
 
-		return "create";
+		return "redirect:/main";
 	}
 
 	/**
